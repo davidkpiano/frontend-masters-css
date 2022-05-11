@@ -5,6 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.scss" />
   </head>
   <body>
@@ -78,6 +85,26 @@
               <div class="ui-movie-cover"></div>
               <div class="ui-movie-title">Documentary</div>
             </li>
+            <li class="ui-movie" style="--i: 5">
+              <div class="ui-movie-cover"></div>
+              <div class="ui-movie-title">Some movie 2</div>
+            </li>
+            <li class="ui-movie" style="--i: 6">
+              <div class="ui-movie-cover"></div>
+              <div class="ui-movie-title">Another movie 2</div>
+            </li>
+            <li class="ui-movie" style="--i: 7">
+              <div class="ui-movie-cover"></div>
+              <div class="ui-movie-title">Some movie sequel 2</div>
+            </li>
+            <li class="ui-movie" style="--i: 8">
+              <div class="ui-movie-cover"></div>
+              <div class="ui-movie-title">Animated movie 2</div>
+            </li>
+            <li class="ui-movie" style="--i: 9">
+              <div class="ui-movie-cover"></div>
+              <div class="ui-movie-title">Documentary 2</div>
+            </li>
           </ul>
         </section>
 
@@ -127,9 +154,16 @@
         </section>
       </main>
       <section class="ui-overlay" data-screen="about">
-        <figure class="ui-figure"></figure>
+        <figure class="ui-figure">
+          <img
+            src="https://images.unsplash.com/photo-1499063078284-f78f7d89616a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1364&q=80"
+            width="100%"
+            alt=""
+            srcset=""
+          />
+        </figure>
         <div class="ui-description">
-          <h2>Delta One</h2>
+          <h2>Frontend Airlines</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt,
             consequuntur laboriosam excepturi tempore cumque dolorum minus esse
@@ -141,7 +175,7 @@
       </section>
       <section class="ui-overlay" data-screen="welcome" id="welcome">
         <div class="ui-logo">✈</div>
-        <div class="ui-title">Welcome to Frontend Airlines</div>
+        <h2 class="ui-title">Welcome to Frontend Airlines</h2>
         <div class="ui-button" onclick="setState('home')">Get Started</div>
       </section>
     </div>

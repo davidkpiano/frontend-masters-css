@@ -1,0 +1,23 @@
+@import './styles/base.scss';
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  padding: 5vmin;
+}
+
+a {
+  color: blue;
+}
+
+h1 {
+  margin: 0;
+}
+
+small {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+ul {
+  margin: 1rem 0;
+}
