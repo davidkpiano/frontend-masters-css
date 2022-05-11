@@ -84,6 +84,7 @@ main {
 .ui-screen:not([data-active]) {
   opacity: 0;
   z-index: 0;
+  display: none;
 }
 
 [data-screen='home'] {
@@ -106,24 +107,6 @@ main {
   }
 }
 
-[data-screen='movies'] {
-  display: grid;
-  grid-template-rows: 3rem 1fr;
-  grid-template-columns: 1fr;
-  grid-template-areas: 'header' 'movies';
-  grid-row-gap: 1rem;
-  opacity: 1;
-  transition: opacity 0.3s;
-
-  &:not([data-active]) {
-    opacity: 0;
-  }
-
-  > .ui-screen-header {
-    grid-area: header;
-  }
-}
-
 .ui-screen-header {
   z-index: 1;
   padding: 0 2rem;
@@ -136,11 +119,33 @@ main {
 // Movies
 // ------
 
+[data-screen='movies'] {
+  display: grid;
+  grid-template-rows: 3rem 1fr;
+  grid-template-columns: 1fr;
+  grid-template-areas: 'header' 'movies';
+  grid-row-gap: 2rem;
+  opacity: 1;
+  transition: opacity 0.3s;
+
+  &:not([data-active]) {
+    opacity: 0;
+  }
+
+  > .ui-screen-header {
+    grid-area: header;
+  }
+}
+
 .ui-movies {
   display: flex;
   flex-direction: row;
-  gap: 1rem;
+  gap: 2rem;
   overflow-x: auto;
+
+  &:hover > .ui-movie:not(:hover) {
+    opacity: 0.5;
+  }
 }
 
 .ui-movie {
@@ -151,14 +156,26 @@ main {
     'title';
   grid-row-gap: 1rem;
   aspect-ratio: 0.6;
-  height: 100%;
+  height: 40vh;
   flex-shrink: 0;
+  animation: shift-up 0.3s calc(var(--i) * 0.1s) backwards;
+  transition: opacity 0.3s;
 
   &:first-child {
     margin-left: 2rem;
   }
   &:last-child {
     margin-right: 2rem;
+  }
+}
+
+@keyframes shift-up {
+  from {
+    opacity: 0;
+    transform: translateY(25%);
+  }
+  to {
+    transform: none;
   }
 }
 
@@ -306,7 +323,7 @@ main {
   grid-template-rows: 3rem 1fr;
   grid-template-columns: 1fr;
   grid-template-areas: 'header' 'music';
-  grid-row-gap: 1rem;
+  grid-row-gap: 2rem;
   opacity: 1;
   transition: opacity 0.3s;
 
@@ -345,6 +362,7 @@ main {
   width: 20vw;
   flex-shrink: 0;
   background-color: var(--color-bg-dark);
+  animation: shift-up 0.3s calc(var(--i) * 0.1s) both;
 
   &:first-child {
     margin-left: 2rem;
@@ -387,7 +405,7 @@ main {
     animation: welcome-title 2s ease-in-out both;
   }
   .ui-button {
-    animation: welcome-button 2s ease-in-out both;
+    animation: welcome-button 2s 0.1s ease-in-out both;
   }
 }
 
@@ -411,7 +429,7 @@ main {
   from,
   50% {
     opacity: 0;
-    transform: translateY(100%);
+    transform: translateY(2rem);
   }
   to {
     opacity: 1;
@@ -422,7 +440,7 @@ main {
   from,
   55% {
     opacity: 0;
-    transform: translateY(100%);
+    transform: translateY(2rem);
   }
   to {
     opacity: 1;

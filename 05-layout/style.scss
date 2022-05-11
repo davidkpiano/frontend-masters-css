@@ -12,7 +12,7 @@ body {
   grid-template-rows: 1fr;
   grid-template-areas: 'figure';
   grid-column-gap: 2rem;
-  width: 10vw;
+  width: 20vw;
   aspect-ratio: 1;
   border: 1px solid;
 
@@ -28,24 +28,68 @@ body {
     grid-template-rows: 1fr;
     grid-template-areas: 'figure content';
     aspect-ratio: 2;
-    width: 50vw;
+    width: 70vw;
   }
 }
 
 .ui-content {
   grid-area: content;
+  animation: content 0.3s 0.3s both;
+}
+
+@keyframes content {
+  from {
+    opacity: 0;
+    transform: translateX(-2rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .ui-figure {
-  background: blue;
-  transform-origin: top left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  &[data-flip='invert'] {
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(to bottom right, #124269, #309aef);
+    transform-origin: top left;
+  }
+
+  &[data-flip='invert']:before {
     transform: translate(calc(var(--dx) * 1px), calc(var(--dy) * 1px))
       scale(var(--dw), var(--dh));
   }
 
-  &[data-flip='play'] {
+  &[data-flip='play']:before {
+    transition: transform 0.3s;
+    transform: none;
+  }
+
+  > .ui-caption {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+  }
+}
+
+[data-flip] {
+  &[data-flip-bg][data-flip='invert']:before,
+  &:not([data-flip-bg])[data-flip='invert'] {
+    transform: translate(calc(var(--dx) * 1px), calc(var(--dy) * 1px))
+      scale(var(--dw), var(--dh));
+  }
+
+  &[data-flip-bg][data-flip='play']:before,
+  &:not([data-flip-bg])[data-flip='play'] {
     transition: transform 0.3s;
     transform: none;
   }

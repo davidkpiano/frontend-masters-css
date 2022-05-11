@@ -1,1 +1,86 @@
 @import '../styles/base.scss';
+
+:root {
+  --color-gray: #8c97b7;
+  --color-blue: #1c38f1;
+  --color-green: #1fcdb0;
+  --input-height: 3rem;
+  --transition-duration: 0.3s;
+  --transition-easing: cubic-bezier(0.5, 0, 0.5, 1);
+  --animation-duration: 0.8s;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9fbff;
+}
+
+.ui-form {
+  background: #fff;
+  box-shadow: 0 0.5rem 1rem #0003;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr;
+  grid-column-gap: 1rem;
+  grid-template-areas: 'input button';
+
+  // Add an animation here
+
+  --color: var(--color-gray);
+  &:focus-within {
+    --color: var(--color-blue);
+  }
+
+  > .ui-input,
+  > .ui-button {
+    // Add an animation here
+  }
+
+  > .ui-input {
+    // ...
+  }
+  > .ui-button {
+    // ...
+  }
+}
+
+.ui-input {
+  grid-area: input;
+  padding: 0 1rem;
+  height: var(--input-height);
+  border: 2px solid var(--color);
+  border-radius: 0.25rem;
+  outline: none;
+  transition: inherit;
+}
+
+.ui-button {
+  grid-area: button;
+  border: none;
+  padding: 0 1rem;
+  color: white;
+  font-weight: bold;
+  border-radius: 0.25rem;
+  height: var(--input-height);
+  background-color: var(--color);
+  transition: inherit;
+}
+
+[data-show]:not([data-active]) {
+  display: none;
+}
+
+.ui-form {
+  overflow: hidden;
+}
+
+@keyframes slide-up {
+  // Add keyframes here
+}
+
+@keyframes shake {
+  // Add a shake animation here
+}

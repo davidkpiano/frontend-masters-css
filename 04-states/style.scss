@@ -1,6 +1,124 @@
 @import '../styles/base.scss';
 
+:root {
+  --color-gray: #8c97b7;
+  --color-blue: #1c38f1;
+  --color-green: #1fcdb0;
+  --input-height: 3rem;
+  --transition-duration: 0.3s;
+  --transition-easing: cubic-bezier(0.5, 0, 0.5, 1);
+  --animation-duration: 0.8s;
+}
 body {
-  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9fbff;
+}
+
+.ui-form {
+  background: #fff;
+  box-shadow: 0 0.5rem 1rem #0003;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr;
+  grid-column-gap: 1rem;
+  grid-template-areas: 'input button';
+  transition: all var(--transition-duration) var(--transition-easing);
+  will-change: transform;
+
+  --color: var(--color-gray);
+  &:focus-within {
+    --color: var(--color-blue);
+  }
+
+  &[data-state='subscribe'] {
+    // Add an animation here
+  }
+
+  &[data-state='success'] {
+    // Change the color and/or add an animation here
+  }
+
+  &[data-state='error'] {
+    // Change the color and/or add an animation here
+  }
+
+  > .ui-input,
+  > .ui-button {
+    animation-name: slide-up;
+    animation-fill-mode: both;
+    animation-timing-function: var(--transition-easing);
+    animation-delay: calc(var(--animation-duration) / 2);
+  }
+
+  > .ui-input {
+    animation-duration: 0.5s;
+  }
+  > .ui-button {
+    animation-duration: 0.6s;
+  }
+}
+
+.ui-input {
+  grid-area: input;
+  padding: 0 1rem;
+  height: var(--input-height);
+  border: 2px solid var(--color);
+  border-radius: 0.25rem;
+  outline: none;
+  transition: inherit;
+}
+
+.ui-button {
+  grid-area: button;
+  border: none;
+  padding: 0 1rem;
   color: white;
+  font-weight: bold;
+  border-radius: 0.25rem;
+  height: var(--input-height);
+  background-color: var(--color);
+  transition: inherit;
+}
+
+[data-show]:not([data-active]) {
+  display: none;
+}
+
+.ui-form {
+  overflow: hidden;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes shake {
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(1%);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-1%);
+  }
+  from,
+  to {
+    transform: none;
+  }
 }

@@ -8,12 +8,8 @@
 
 ## Exercise
 
-- Use JavaScript to change the state of the form from `'subscribe'` to `'loading'` when the button is clicked.
-- After 2 seconds in `'loading'`, change the state to `'success'` or `'error'` (chosen randomly to simulate an error state)
-  - Hint: use `Math.random() < 0.5`
-- On the `'error'` state, animate the form by shaking it
-  - You will need to create a `shake` animation with `@keyframes`
-- Refactor to a state machine to send events and prevent impossible state transitions (we'll do this together)
+- Apply the FLIP technique to the caption inside of the figure.
+- Add choreography to the content so that it appears after the figure has moved.
 
 ## Resources
 
