@@ -1,1 +1,13 @@
 @import '../styles/base.scss';
+
+.circle {
+  height: 5vmin;
+  width: 5vmin;
+  border-radius: 50%;
+  background-color: blue;
+
+  transform: translate(
+    calc((var(--x) * 1px) - 50%),
+    calc((var(--y) * 1px) - 50%)
+  );
+}

@@ -13,6 +13,7 @@ module.exports = defineConfig({
         states: resolve(__dirname, '04-states/index.html'),
         layout: resolve(__dirname, '05-layout/index.html'),
         reactive: resolve(__dirname, '06-reactive/index.html'),
+        examples: resolve(__dirname, 'examples'),
       },
     },
   },

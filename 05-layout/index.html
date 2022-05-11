@@ -7,5 +7,44 @@
     <title>Layout</title>
     <link rel="stylesheet" href="style.scss" />
   </head>
-  <body></body>
+  <body>
+    <div id="app" data-state="collapsed">
+      <figure class="ui-figure"></figure>
+      <div class="ui-content">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+          ullam hic consectetur ducimus neque ipsam incidunt voluptatem
+          voluptatum eos. Voluptatum minus omnis provident sit architecto,
+          mollitia nihil aspernatur sed praesentium.
+        </p>
+      </div>
+    </div>
+  </body>
+  <script>
+    const figureEl = document.querySelector('.ui-figure');
+    window.app.addEventListener('click', () => {
+      const firstRect = figureEl.getBoundingClientRect();
+      app.dataset.state =
+        app.dataset.state === 'collapsed' ? 'expanded' : 'collapsed';
+
+      requestAnimationFrame(() => {
+        const lastRect = figureEl.getBoundingClientRect();
+
+        const dx = firstRect.x - lastRect.x;
+        const dy = firstRect.y - lastRect.y;
+        const dw = firstRect.width / lastRect.width;
+        const dh = firstRect.height / lastRect.height;
+
+        figureEl.style.setProperty('--dx', dx);
+        figureEl.style.setProperty('--dy', dy);
+        figureEl.style.setProperty('--dw', dw);
+        figureEl.style.setProperty('--dh', dh);
+        figureEl.dataset.flip = 'invert';
+
+        requestAnimationFrame(() => {
+          figureEl.dataset.flip = 'play';
+        });
+      });
+    });
+  </script>
 </html>

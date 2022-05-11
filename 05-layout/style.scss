@@ -1,1 +1,52 @@
 @import '../styles/base.scss';
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#app {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: 'figure';
+  grid-column-gap: 2rem;
+  width: 10vw;
+  aspect-ratio: 1;
+  border: 1px solid;
+
+  &[data-state='collapsed'] {
+    .ui-content {
+      display: none;
+    }
+  }
+
+  &[data-state='expanded'] {
+    padding: 2rem;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 'figure content';
+    aspect-ratio: 2;
+    width: 50vw;
+  }
+}
+
+.ui-content {
+  grid-area: content;
+}
+
+.ui-figure {
+  background: blue;
+  transform-origin: top left;
+
+  &[data-flip='invert'] {
+    transform: translate(calc(var(--dx) * 1px), calc(var(--dy) * 1px))
+      scale(var(--dw), var(--dh));
+  }
+
+  &[data-flip='play'] {
+    transition: transform 0.3s;
+    transform: none;
+  }
+}

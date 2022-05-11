@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.scss" />
+  </head>
+  <body>
+    <div id="app">
+      <aside class="ui-nav">
+        <ul class="ui-nav-items">
+          <!-- <li class="ui-nav-item">Top Picks</li> -->
+          <li class="ui-nav-item" data-item="home" onclick="setState('home')">
+            Top Picks
+          </li>
+          <li
+            class="ui-nav-item"
+            data-item="movies"
+            onclick="setState('movies')"
+          >
+            Movies
+          </li>
+          <li class="ui-nav-item" onclick="setState('music')">Music</li>
+          <!-- <li class="ui-nav-item">Series</li>
+          <li class="ui-nav-item">Live TV</li>
+          <li class="ui-nav-item">My Flight</li> -->
+          <li class="ui-nav-item" onclick="setState('about')">
+            About Frontend
+          </li>
+          <!-- <li class="ui-nav-item">More</li> -->
+        </ul>
+      </aside>
+      <header class="ui-flight-header">
+        <div class="ui-flight-info">
+          <div>🕖</div>
+          <div>2hr 56m Until Arrival</div>
+          <div>Flight Tracker</div>
+        </div>
+        <div>⚙️</div>
+      </header>
+      <main>
+        <section class="ui-screen" data-screen="home">
+          <div class="ui-interest">
+            <header class="ui-interest-header">Movies</header>
+            <div class="ui-interest-details">
+              <div class="ui-interest-title">Artist Spotlight</div>
+              <div class="ui-button">Details</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="ui-screen" data-screen="movies" id="movies">
+          <header class="ui-screen-header">
+            <div class="ui-dropdown">
+              <div class="ui-dropdown-title">New Releases</div>
+            </div>
+          </header>
+          <ul class="ui-movies">
+            <li class="ui-movie">
+              <div class="ui-movie-cover"></div>
+              <div class="ui-movie-title">Some movie</div>
+            </li>
+            <li class="ui-movie">
+              <div class="ui-movie-cover"></div>
+              <div class="ui-movie-title">Some movie</div>
+            </li>
+            <li class="ui-movie">
+              <div class="ui-movie-cover"></div>
+              <div class="ui-movie-title">Some movie</div>
+            </li>
+            <li class="ui-movie">
+              <div class="ui-movie-cover"></div>
+              <div class="ui-movie-title">Some movie</div>
+            </li>
+            <li class="ui-movie">
+              <div class="ui-movie-cover"></div>
+              <div class="ui-movie-title">Some movie</div>
+            </li>
+          </ul>
+        </section>
+
+        <section class="ui-screen" data-screen="music">
+          <header class="ui-screen-header">
+            <div class="ui-dropdown">
+              <div class="ui-dropdown-title">Playlists</div>
+            </div>
+          </header>
+          <ul class="ui-albums">
+            <li class="ui-album">
+              <div class="ui-album-cover"></div>
+              <div class="ui-album-title">
+                <div>Deep Focus Playlist</div>
+                <small>Various Artists</small>
+              </div>
+            </li>
+            <li class="ui-album">
+              <div class="ui-album-cover"></div>
+              <div class="ui-album-title">
+                <div>Jazz Playlist</div>
+                <small>Various Artists</small>
+              </div>
+            </li>
+            <li class="ui-album">
+              <div class="ui-album-cover"></div>
+              <div class="ui-album-title">
+                <div>Classical Playlist</div>
+                <small>Various Artists</small>
+              </div>
+            </li>
+            <li class="ui-album">
+              <div class="ui-album-cover"></div>
+              <div class="ui-album-title">
+                <div>Rock Playlist</div>
+                <small>Various Artists</small>
+              </div>
+            </li>
+            <li class="ui-album">
+              <div class="ui-album-cover"></div>
+              <div class="ui-album-title">
+                <div>Electronica Playlist</div>
+                <small>Various Artists</small>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </main>
+      <section class="ui-overlay" data-screen="about">
+        <figure class="ui-figure"></figure>
+        <div class="ui-description">
+          <h2>Delta One</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt,
+            consequuntur laboriosam excepturi tempore cumque dolorum minus esse
+            praesentium numquam nobis deserunt molestiae velit obcaecati
+            quibusdam porro eos placeat possimus incidunt.
+          </p>
+          <button class="ui-close" onclick="setState('home')">𝗫</button>
+        </div>
+      </section>
+      <section class="ui-overlay" data-screen="welcome" id="welcome">
+        <div class="ui-logo">✈</div>
+        <div class="ui-title">Welcome to Frontend Airlines</div>
+        <div class="ui-button" onclick="setState('home')">Get Started</div>
+      </section>
+    </div>
+  </body>
+  <script>
+    const app = document.querySelector('#app');
+
+    window.addEventListener('hashchange', (event) => {
+      setState(location.hash.slice(1));
+    });
+
+    function setState(state) {
+      console.log(state);
+      app.dataset.state = state;
+
+      const active = document.querySelectorAll(`[data-active]`);
+
+      active.forEach((activeEl) => delete activeEl.dataset.active);
+
+      const states = state.split('.').map((segment, i, segments) => {
+        return segments.slice(0, i + 1).join('.');
+      });
+
+      states.forEach((subState) => {
+        const screen = document.querySelector(`[data-screen^="${subState}"]`);
+        const item = document.querySelector(`[data-item^="${subState}"]`);
+        const show = document.querySelectorAll(`[data-show="${subState}"]`);
+
+        if (screen) {
+          screen.dataset.active = true;
+        }
+        if (item) {
+          item.dataset.active = true;
+        }
+        show.forEach((el) => {
+          el.dataset.active = true;
+        });
+      });
+    }
+
+    setState(location.hash.slice(1) || 'welcome');
+  </script>
+</html>
