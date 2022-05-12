@@ -3,6 +3,7 @@
 body {
   font-family: 'Open Sans', sans-serif;
   padding: 5vmin;
+  background-color: #f4f4f4;
 }
 
 a {
@@ -20,4 +21,11 @@ small {
 
 ul {
   margin: 1rem 0;
+}
+
+.ball {
+  height: 5vmin;
+  width: 5vmin;
+  border-radius: 50%;
+  background: radial-gradient(circle at bottom right, #fb2324, #fe932a);
 }

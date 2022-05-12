@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reactive</title>
+    <link rel="stylesheet" href="style.final.scss" />
+  </head>
+  <body>
+    <div class="circle"></div>
+  </body>
+  <script>
+    const circleEl = document.querySelector('.circle');
+
+    const currentPoint = { x: 0, y: 0 };
+    const targetPoint = { x: 0, y: 0 };
+
+    function lerp() {
+      currentPoint.x = currentPoint.x + (targetPoint.x - currentPoint.x) * 0.1;
+      currentPoint.y = currentPoint.y + (targetPoint.y - currentPoint.y) * 0.1;
+
+      circleEl.style.setProperty('--x', currentPoint.x);
+      circleEl.style.setProperty('--y', currentPoint.y);
+
+      requestAnimationFrame(lerp);
+    }
+
+    requestAnimationFrame(lerp);
+
+    document.body.addEventListener('pointermove', (event) => {
+      targetPoint.x = event.clientX;
+      targetPoint.y = event.clientY;
+      // circleEl.style.setProperty('--x', event.clientX);
+      // circleEl.style.setProperty('--y', event.clientY);
+    });
+  </script>
+</html>

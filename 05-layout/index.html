@@ -28,69 +28,9 @@
     const appEl = document.querySelector('#app');
 
     appEl.addEventListener('click', () => {
-      flip(() => {
-        app.dataset.state =
-          app.dataset.state === 'collapsed' ? 'expanded' : 'collapsed';
-      }, [figureEl, captionEl]);
+      app.dataset.state =
+        app.dataset.state === 'collapsed' ? 'expanded' : 'collapsed';
     });
-
-    // window.app.addEventListener('click', () => {
-    //   const firstRect = figureEl.getBoundingClientRect();
-    //   app.dataset.state =
-    //     app.dataset.state === 'collapsed' ? 'expanded' : 'collapsed';
-
-    //   requestAnimationFrame(() => {
-    //     const lastRect = figureEl.getBoundingClientRect();
-
-    //     const dx = firstRect.x - lastRect.x;
-    //     const dy = firstRect.y - lastRect.y;
-    //     const dw = firstRect.width / lastRect.width;
-    //     const dh = firstRect.height / lastRect.height;
-
-    //     figureEl.style.setProperty('--dx', dx);
-    //     figureEl.style.setProperty('--dy', dy);
-    //     figureEl.style.setProperty('--dw', dw);
-    //     figureEl.style.setProperty('--dh', dh);
-    //     figureEl.dataset.flip = 'invert';
-
-    //     requestAnimationFrame(() => {
-    //       figureEl.dataset.flip = 'play';
-    //     });
-    //   });
-    // });
-
-    function flip(fn, firstEls, lastEls = firstEls) {
-      const firstRects = firstEls.map((el) => el.getBoundingClientRect());
-
-      fn();
-
-      requestAnimationFrame(() => {
-        const lastRects = lastEls.map((el) => el.getBoundingClientRect());
-
-        lastRects.forEach((lastRect, i) => {
-          const firstRect = firstRects[i];
-          const lastEl = lastEls[i];
-
-          if (!firstRect) {
-            return;
-          }
-
-          const dx = firstRect.x - lastRect.x;
-          const dy = firstRect.y - lastRect.y;
-          const dw = firstRect.width / lastRect.width;
-          const dh = firstRect.height / lastRect.height;
-
-          lastEl.style.setProperty('--dx', dx);
-          lastEl.style.setProperty('--dy', dy);
-          lastEl.style.setProperty('--dw', dw);
-          lastEl.style.setProperty('--dh', dh);
-          lastEl.dataset.flip = 'invert';
-
-          requestAnimationFrame(() => {
-            lastEl.dataset.flip = 'play';
-          });
-        });
-      });
-    }
+    // ...
   </script>
 </html>

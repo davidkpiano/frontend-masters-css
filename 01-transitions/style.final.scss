@@ -26,17 +26,12 @@ body {
   grid-template-rows: 1fr;
   grid-column-gap: 1rem;
   grid-template-areas: 'input button';
-
-  // Add an animation here
+  transition: all var(--transition-duration) var(--transition-easing);
+  will-change: transform;
 
   --color: var(--color-gray);
   &:focus-within {
     --color: var(--color-blue);
-  }
-
-  > .ui-input,
-  > .ui-button {
-    // Add an animation here
   }
 }
 
@@ -68,12 +63,4 @@ body {
 
 .ui-form {
   overflow: hidden;
-}
-
-@keyframes slide-up {
-  // Add keyframes here
-}
-
-@keyframes shake {
-  // Add a shake animation here
 }

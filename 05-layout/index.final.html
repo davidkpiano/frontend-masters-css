@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Layout</title>
+    <link rel="stylesheet" href="style.final.scss" />
+  </head>
+  <body>
+    <div id="app" data-state="collapsed">
+      <figure class="ui-figure" data-flip-bg>
+        <figcaption class="ui-caption">Animation</figcaption>
+      </figure>
+      <div class="ui-content">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+          ullam hic consectetur ducimus neque ipsam incidunt voluptatem
+          voluptatum eos. Voluptatum minus omnis provident sit architecto,
+          mollitia nihil aspernatur sed praesentium.
+        </p>
+      </div>
+    </div>
+  </body>
+  <script>
+    const figureEl = document.querySelector('.ui-figure');
+    const captionEl = document.querySelector('.ui-caption');
+    const appEl = document.querySelector('#app');
+
+    appEl.addEventListener('click', () => {
+      flip(() => {
+        app.dataset.state =
+          app.dataset.state === 'collapsed' ? 'expanded' : 'collapsed';
+      }, [figureEl, captionEl]);
+    });
+
+    // window.app.addEventListener('click', () => {
+    //   const firstRect = figureEl.getBoundingClientRect();
+    //   app.dataset.state =
+    //     app.dataset.state === 'collapsed' ? 'expanded' : 'collapsed';
+
+    //   requestAnimationFrame(() => {
+    //     const lastRect = figureEl.getBoundingClientRect();
+
+    //     const dx = firstRect.x - lastRect.x;
+    //     const dy = firstRect.y - lastRect.y;
+    //     const dw = firstRect.width / lastRect.width;
+    //     const dh = firstRect.height / lastRect.height;
+
+    //     figureEl.style.setProperty('--dx', dx);
+    //     figureEl.style.setProperty('--dy', dy);
+    //     figureEl.style.setProperty('--dw', dw);
+    //     figureEl.style.setProperty('--dh', dh);
+    //     figureEl.dataset.flip = 'invert';
+
+    //     requestAnimationFrame(() => {
+    //       figureEl.dataset.flip = 'play';
+    //     });
+    //   });
+    // });
+
+    function flip(fn, firstEls, lastEls = firstEls) {
+      const firstRects = firstEls.map((el) => el.getBoundingClientRect());
+
+      fn();
+
+      requestAnimationFrame(() => {
+        const lastRects = lastEls.map((el) => el.getBoundingClientRect());
+
+        lastRects.forEach((lastRect, i) => {
+          const firstRect = firstRects[i];
+          const lastEl = lastEls[i];
+
+          if (!firstRect) {
+            return;
+          }
+
+          const dx = firstRect.x - lastRect.x;
+          const dy = firstRect.y - lastRect.y;
+          const dw = firstRect.width / lastRect.width;
+          const dh = firstRect.height / lastRect.height;
+
+          lastEl.style.setProperty('--dx', dx);
+          lastEl.style.setProperty('--dy', dy);
+          lastEl.style.setProperty('--dw', dw);
+          lastEl.style.setProperty('--dh', dh);
+          lastEl.dataset.flip = 'invert';
+
+          requestAnimationFrame(() => {
+            lastEl.dataset.flip = 'play';
+          });
+        });
+      });
+    }
+  </script>
+</html>
