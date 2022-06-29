@@ -1,6 +1,6 @@
 # Frontend Masters CSS Animations Workshop
 
-Welcome to the [Frontend Masters CSS Animations Workshop](https://frontendmasters.com/workshops/css-animations/)! In this workshop, you will:
+Welcome to the [Frontend Masters CSS Animations Workshop](https://frontendmasters.com/courses/css-animations/)! In this workshop, you will:
 
 - Learn how to design meaningful animations that improve the user experience in websites and web apps
 - Become proficient in creating animations with CSS and JavaScript
