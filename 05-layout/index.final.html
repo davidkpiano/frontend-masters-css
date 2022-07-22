@@ -62,9 +62,8 @@
     function flip(fn, firstEls, lastEls = firstEls) {
       const firstRects = firstEls.map((el) => el.getBoundingClientRect());
 
-      fn();
-
       requestAnimationFrame(() => {
+        fn();
         const lastRects = lastEls.map((el) => el.getBoundingClientRect());
 
         lastRects.forEach((lastRect, i) => {
